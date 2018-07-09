@@ -61,11 +61,8 @@ const ListFieldset = Fieldsets.ListFieldset;
 <script src="//unpkg.com/biz-auto-form@1.2.2/dist/biz-auto-form.min.js"></script>
 ```
 
-## Docs and Demos
-[https://galaxy-fe.github.io/biz-auto-form/](https://galaxy-fe.github.io/biz-auto-form/)
-
 ## 设计方案
-![image](https://galaxy-fe.github.io/biz-auto-form/images/auto-form.png)
+![image](http://gitlab.biztech.sogou-inc.com/biz-fe/biz-auto-form/raw/master/auto-form.png)
 
 AutoForm组件通过data属性`（json对象）`可以回填表单数据json对象，
 通过descriptor属性`（json对象的数组，每一项对应一个字段）`自动渲染生成整个表单，
