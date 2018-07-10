@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/galaxy-fe/biz-auto-form.git"
+    "url": "http://gitlab.biztech.sogou-inc.com/biz-fe/biz-auto-form.git"
   },
   "keywords": [
     "react",
