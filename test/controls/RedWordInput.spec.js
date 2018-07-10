@@ -24,7 +24,7 @@ describe('RedWordInput', () => {
 
   it('should call event callback when change', () => {
     const onInputChange = sinon.spy();
-    const wrapper1 = mount(<RedWordInput onChange={onInputChange} />);
+    const wrapper1 = mount(<RedWordInput limiter={{max:24}} onChange={onInputChange} />);
     wrapper1.find('input').simulate('change', {target: {value: 'foo'}});
     expect(onInputChange.getCall(0).args[0]).to.equal('foo');
   });

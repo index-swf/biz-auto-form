@@ -12,7 +12,7 @@
  */
 export const getStrBytes =  (str) => {
   let byteLen = 0;
-  if (str) {
+  if (!!str) {
     for (let i = 0; i < str.length; i++) {
       if (str.charCodeAt(i) > 255) {
         byteLen += 2;
@@ -29,7 +29,10 @@ export const getStrBytes =  (str) => {
  * @param str
  */
 export const trim = (str) => {
-  return str.replace(/(^\s*)|(\s*$)/g, '');
+  if(!!str){
+    return str.replace(/(^\s*)|(\s*$)/g, '');
+  }
+  return '';
 };
 
 /**
@@ -37,7 +40,10 @@ export const trim = (str) => {
  * @param str
  */
 export const filterSymbol =  (str) => {
-  return str.replace(/\{(.*?)\|\|.*?\}/g,'$1').replace(/[\{\}]/g, '');
+  if(!!str){
+    return str.replace(/\{(.*?)\|\|.*?\}/g,'$1').replace(/[\{\}]/g, '');
+  }
+  return '';
 };
 
 /**

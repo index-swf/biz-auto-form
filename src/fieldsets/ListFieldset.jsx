@@ -33,13 +33,12 @@ class ListFieldset extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if ('length' in nextProps) {
-      let length = nextProps.length;
-      if(Array.isArray(nextProps.length)){
-        length = nextProps.length[0];
+    if ('length' in nextProps && nextProps.length !== this.props.length) {
+      if(!Array.isArray(nextProps.length)) {
+        let length = nextProps.length;
+        const value = this.getValue();
+        this.setState({ length, value });
       }
-      const value = this.getValue();
-      this.setState({ length, value });
     }
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "biz-auto-form",
-  "version": "1.2.2",
+  "version": "1.2.6",
   "description": "Auto-generated form react components used in ad material system",
   "main": "lib/index.js",
   "scripts": {
@@ -26,9 +26,9 @@
   "author": "KCFE",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/galaxy-fe/biz-auto-form/issues"
+    "url": "http://gitlab.biztech.sogou-inc.com/biz-fe/biz-auto-form/issues"
   },
-  "homepage": "https://github.com/galaxy-fe/biz-auto-form#readme",
+  "homepage": "http://gitlab.biztech.sogou-inc.com/biz-fe/biz-auto-form",
   "files": [
     "assets",
     "lib",

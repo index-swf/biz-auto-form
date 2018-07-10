@@ -17,12 +17,16 @@
 
 ## 安装
 ```
+npm install biz-auto-form
+```
+或
+```
 npm install @bizfe/biz-auto-form
 ```
 
 ## 使用示例
 ```
-import AutoForm from '@bizfe/biz-auto-form';
+import AutoForm from 'biz-auto-form';
 import formDesc from './108.json';
 
 ReactDom.render(
@@ -38,31 +42,28 @@ ReactDom.render(
 ```
 引入样式：
 ```
-import '@bizfe/biz-auto-form/assets/index.css';
+import 'biz-auto-form/assets/index.css';
 ```
 
 引入组件中的输入控件
 ```
-import { Controls } from '@bizfe/biz-auto-form';
+import { Controls } from 'biz-auto-form';
 const Input = Controls.Input;
 ```
 
 引入组件中的字段组
 ```
-import { ListFieldset } from '@bizfe/biz-auto-form';
+import { Fieldsets } from 'biz-auto-form';
 const ListFieldset = Fieldsets.ListFieldset;
 ```
 
 也可以全局引用构建后的文件，[Try it on CodePen](https://codepen.io/CharmSun/pen/ZJVNMa)
 ```
-<link rel="stylesheet" type="text/css" href="//unpkg.com/biz-auto-form@1.2.2/dist/biz-auto-form.min.css">
+<link rel="stylesheet" type="text/css" href="//unpkg.com/biz-auto-form@1.2.6/dist/biz-auto-form.min.css">
 <script src="//unpkg.com/react/umd/react.production.min.js"></script>
 <script src="//unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
-<script src="//unpkg.com/biz-auto-form@1.2.2/dist/biz-auto-form.min.js"></script>
+<script src="//unpkg.com/biz-auto-form@1.2.6/dist/biz-auto-form.min.js"></script>
 ```
-
-## Docs and Demos
-[https://galaxy-fe.github.io/biz-auto-form/](https://galaxy-fe.github.io/biz-auto-form/)
 
 ## 设计方案
 ![image](./images/auto-form.png)
@@ -104,5 +105,10 @@ test          //单元测试
 ## Test Case
 ```
 npm test
+```
+
+## 生成文档和示例
+```
+npm run doc
 ```
 
