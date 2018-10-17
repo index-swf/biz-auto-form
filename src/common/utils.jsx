@@ -41,7 +41,7 @@ export const trim = (str) => {
  */
 export const filterSymbol =  (str) => {
     if(str){
-        return str.replace(/\{(.*?)\|\|.*?\}/g, '$1').replace(/[\{\}]/g, '');
+        return str.replace(/\{(.*?)\|\|.*?\}/g, '$1').replace(/[{}]/g, '');
     }
     return '';
 };

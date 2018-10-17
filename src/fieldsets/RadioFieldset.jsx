@@ -67,7 +67,7 @@ class RadioFieldset extends React.Component{
   };
 
   renderRadioGroup = () => {
-      const options = this.props.optionFields.map((item, index) => {
+      const options = this.props.optionFields.map((item) => {
           return item.option;
       });
       return (

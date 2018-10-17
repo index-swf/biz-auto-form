@@ -47,7 +47,7 @@ class AutoForm extends React.Component{
   render(){
       const props = this.props;
       const formData = props.data || {};
-      const fields = props.descriptor.map((item, index) => {
+      const fields = props.descriptor.map((item) => {
           const fieldProps = {
               ...item,
               value: formData[item.name],

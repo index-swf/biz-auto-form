@@ -14,7 +14,7 @@ class VideoUpload extends React.Component{
     constructor(props){
         super(props);
         const {uploadRules} = props;
-        const self = this;
+        const me = this;
         this.uploaderProps = {
             action: props.action,
             data: {
@@ -22,14 +22,14 @@ class VideoUpload extends React.Component{
             },
             beforeUpload(file){
                 if(file.type !== 'video/mp4'){
-                    self.setState({
+                    me.setState({
                         status: '视频格式不符合'
                     });
                     return false;
                 }
 
                 if(file.size > uploadRules.size * 1024){
-                    self.setState({
+                    me.setState({
                         status: '视频超过了限制大小'
                     });
                     return false;
@@ -37,16 +37,16 @@ class VideoUpload extends React.Component{
             },
             onSuccess(response){
                 if(response.status === 1){
-                    self.handleChange(response.data);
+                    me.handleChange(response.data);
                 }else{
-                    self.setState({
+                    me.setState({
                         value: '',
                         status: '上传失败：' + response.errors.join(',')
                     });
                 }
             },
             onError(err){
-                self.setState({
+                me.setState({
                     value: '',
                     status: '上传失败：' + err.message
                 });

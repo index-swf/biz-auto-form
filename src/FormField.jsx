@@ -50,7 +50,7 @@ class FormField extends React.Component{
     }
 
   handleChange = (value) => {
-      this.validator && this.validator.validate({[this.props.name]: value}, (errors, fields) => {
+      this.validator && this.validator.validate({[this.props.name]: value}, (errors) => {
           this.setState({ errors });
       });
       this.setState({ value });
@@ -61,7 +61,7 @@ class FormField extends React.Component{
 
   validate = () => {
       let result = true;
-      this.validator && this.validator.validate({[this.props.name]: this.state.value}, (errors, fields) => {
+      this.validator && this.validator.validate({[this.props.name]: this.state.value}, (errors) => {
           if(errors){
               result = false;
           }
