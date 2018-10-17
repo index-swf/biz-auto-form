@@ -9,13 +9,13 @@ import RadioGroup from './RadioGroup';
 import Select from './Select';
 
 export default {
-  RedWordInput,
-  Input,
-  TextArea,
-  LinkTextArea,
-  ImageUpload,
-  VideoUpload,
-  DateTimeInput,
-  RadioGroup,
-  Select
+    RedWordInput,
+    Input,
+    TextArea,
+    LinkTextArea,
+    ImageUpload,
+    VideoUpload,
+    DateTimeInput,
+    RadioGroup,
+    Select
 };

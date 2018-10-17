@@ -5,9 +5,9 @@ import TabFieldset from './TabFieldset';
 import TableFieldset from './TableFieldset';
 
 export default {
-  GroupFieldset,
-  ListFieldset,
-  RadioFieldset,
-  TabFieldset,
-  TableFieldset
+    GroupFieldset,
+    ListFieldset,
+    RadioFieldset,
+    TabFieldset,
+    TableFieldset
 };

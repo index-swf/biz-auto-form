@@ -10,114 +10,114 @@ import Input from './Input';
 import Button from '../common/Button';
 
 
-class VideoUpload extends React.Component {
-  constructor(props) {
-    super(props);
-    const {uploadRules} = props;
-    const self = this;
-    this.uploaderProps = {
-      action: props.action,
-      data: {
-        key: uploadRules.key
-      },
-      beforeUpload(file) {
-        if(file.type !== 'video/mp4'){
-          self.setState({
-            status: '视频格式不符合'
-          });
-          return false;
-        }
+class VideoUpload extends React.Component{
+    constructor(props){
+        super(props);
+        const {uploadRules} = props;
+        const self = this;
+        this.uploaderProps = {
+            action: props.action,
+            data: {
+                key: uploadRules.key
+            },
+            beforeUpload(file){
+                if(file.type !== 'video/mp4'){
+                    self.setState({
+                        status: '视频格式不符合'
+                    });
+                    return false;
+                }
 
-        if(file.size > uploadRules.size * 1024) {
-          self.setState({
-            status: '视频超过了限制大小'
-          });
-          return false;
-        }
-      },
-      onSuccess(response) {
-        if(response.status === 1) {
-          self.handleChange(response.data);
-        } else {
-          self.setState({
-            value: '',
-            status: '上传失败：'+ response.errors.join(',')
-          });
-        }
-      },
-      onError(err) {
-        self.setState({
-          value: '',
-          status: '上传失败：' + err.message
-        });
-      }
-    };
-    this.state = {
-      value: props.value || '',
-      status: null
-    };
-  }
-
-  componentWillReceiveProps(nextProps){
-    if ('value' in nextProps) {
-      this.setState({
-        value: nextProps.value,
-        status: null
-      });
+                if(file.size > uploadRules.size * 1024){
+                    self.setState({
+                        status: '视频超过了限制大小'
+                    });
+                    return false;
+                }
+            },
+            onSuccess(response){
+                if(response.status === 1){
+                    self.handleChange(response.data);
+                }else{
+                    self.setState({
+                        value: '',
+                        status: '上传失败：' + response.errors.join(',')
+                    });
+                }
+            },
+            onError(err){
+                self.setState({
+                    value: '',
+                    status: '上传失败：' + err.message
+                });
+            }
+        };
+        this.state = {
+            value: props.value || '',
+            status: null
+        };
     }
-  }
+
+    componentWillReceiveProps(nextProps){
+        if('value' in nextProps){
+            this.setState({
+                value: nextProps.value,
+                status: null
+            });
+        }
+    }
 
   handleChange = (value) => {
-    const {onChange} = this.props;
-    if (!('value' in this.props)) {
-      this.setState({
-        value,
-        status: null
-      });
-    }
-    if (onChange) {
-      onChange(value);
-    }
+      const {onChange} = this.props;
+      if(!('value' in this.props)){
+          this.setState({
+              value,
+              status: null
+          });
+      }
+      if(onChange){
+          onChange(value);
+      }
   };
 
-  render() {
-    const props = this.props;
-    return (
-      <div>
-        <Upload
-          {...this.uploaderProps}
-          style={{outline: 'none', cursor: 'pointer'}}
-          disabled={props.disabled}
-        >
-          <Input
-            className={props.className}
-            value={this.state.value}
-            disabled
-          />
-          <Button className="ghost-btn" style={{marginLeft: 5}} disabled={props.disabled}>
+  render(){
+      const props = this.props;
+      return (
+          <div>
+              <Upload
+                  {...this.uploaderProps}
+                  style={{outline: 'none', cursor: 'pointer'}}
+                  disabled={props.disabled}
+              >
+                  <Input
+                      className={props.className}
+                      value={this.state.value}
+                      disabled
+                  />
+                  <Button className="ghost-btn" style={{marginLeft: 5}} disabled={props.disabled}>
             上传视频
-          </Button>
-        </Upload>
-        {this.state.status ? <p className="form-upload-status">{this.state.status}</p> : null}
-      </div>
-    );
+                  </Button>
+              </Upload>
+              {this.state.status ? <p className="form-upload-status">{this.state.status}</p> : null}
+          </div>
+      );
   }
 }
 
 VideoUpload.propTypes = {
-  value: PropTypes.string,
-  action: PropTypes.string,
-  uploadRules: PropTypes.shape({
-    size: PropTypes.number,
-    key: PropTypes.string
-  }),
-  onChange: PropTypes.func,
-  disabled: PropTypes.bool
+    value: PropTypes.string,
+    action: PropTypes.string,
+    uploadRules: PropTypes.shape({
+        size: PropTypes.number,
+        key: PropTypes.string
+    }),
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool
 };
 
 VideoUpload.defaultProps = {
-  action: '/uploadVideo.do',
-  disabled: false
+    action: '/uploadVideo.do',
+    disabled: false
 };
 
 export default VideoUpload;

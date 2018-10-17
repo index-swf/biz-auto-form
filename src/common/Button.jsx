@@ -8,34 +8,34 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 
-class Button extends React.Component {
-  render() {
-    const props = this.props;
-    return (
-      <button
-        type={props.htmlType}
-        className={classNames('rc-btn', props.className)}
-        style={props.style}
-        onClick={props.onClick}
-        disabled={props.disabled}
-      >
-        {props.children}
-      </button>
-    );
-  }
+class Button extends React.Component{
+    render(){
+        const props = this.props;
+        return (
+            <button
+                type={props.htmlType}
+                className={classNames('rc-btn', props.className)}
+                style={props.style}
+                onClick={props.onClick}
+                disabled={props.disabled}
+            >
+                {props.children}
+            </button>
+        );
+    }
 }
 
 Button.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  htmlType: PropTypes.oneOf(['submit', 'button', 'reset']),
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool
+    children: PropTypes.node,
+    className: PropTypes.string,
+    htmlType: PropTypes.oneOf(['submit', 'button', 'reset']),
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool
 };
 
 Button.defaultProps = {
-  htmlType: 'button',
-  disabled: false
+    htmlType: 'button',
+    disabled: false
 };
 
 export default Button;

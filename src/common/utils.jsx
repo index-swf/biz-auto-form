@@ -11,17 +11,17 @@
  * @returns {number}
  */
 export const getStrBytes =  (str) => {
-  let byteLen = 0;
-  if (!!str) {
-    for (let i = 0; i < str.length; i++) {
-      if (str.charCodeAt(i) > 255) {
-        byteLen += 2;
-      } else {
-        byteLen++;
-      }
+    let byteLen = 0;
+    if(str){
+        for(let i = 0; i < str.length; i++){
+            if(str.charCodeAt(i) > 255){
+                byteLen += 2;
+            }else{
+                byteLen++;
+            }
+        }
     }
-  }
-  return byteLen;
+    return byteLen;
 };
 
 /**
@@ -29,10 +29,10 @@ export const getStrBytes =  (str) => {
  * @param str
  */
 export const trim = (str) => {
-  if(!!str){
-    return str.replace(/(^\s*)|(\s*$)/g, '');
-  }
-  return '';
+    if(str){
+        return str.replace(/(^\s*)|(\s*$)/g, '');
+    }
+    return '';
 };
 
 /**
@@ -40,10 +40,10 @@ export const trim = (str) => {
  * @param str
  */
 export const filterSymbol =  (str) => {
-  if(!!str){
-    return str.replace(/\{(.*?)\|\|.*?\}/g,'$1').replace(/[\{\}]/g, '');
-  }
-  return '';
+    if(str){
+        return str.replace(/\{(.*?)\|\|.*?\}/g, '$1').replace(/[\{\}]/g, '');
+    }
+    return '';
 };
 
 /**
@@ -53,14 +53,14 @@ export const filterSymbol =  (str) => {
  * @returns {{}}
  */
 export const pick = (obj, keys) => {
-  let result = {};
-  for (let i = 0; i < keys.length; i++) {
-    const key = keys[i];
-    if(key in obj){
-      result[key] = obj[key];
+    let result = {};
+    for(let i = 0; i < keys.length; i++){
+        const key = keys[i];
+        if(key in obj){
+            result[key] = obj[key];
+        }
     }
-  }
-  return result;
+    return result;
 };
 
 /**
@@ -70,12 +70,12 @@ export const pick = (obj, keys) => {
  * @returns {{}}
  */
 export const omit = (obj, keys) => {
-  const shallowCopy = {
-    ...obj,
-  };
-  for (let i = 0; i < keys.length; i++) {
-    const key = keys[i];
-    delete shallowCopy[key];
-  }
-  return shallowCopy;
+    const shallowCopy = {
+        ...obj,
+    };
+    for(let i = 0; i < keys.length; i++){
+        const key = keys[i];
+        delete shallowCopy[key];
+    }
+    return shallowCopy;
 };
