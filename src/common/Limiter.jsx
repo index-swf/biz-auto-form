@@ -9,10 +9,6 @@ import {getStrBytes, trim, filterSymbol} from './utils';
 
 
 class Limiter extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   getLength = (str)=> {
     const type = this.props.type;
     let length = 0;
