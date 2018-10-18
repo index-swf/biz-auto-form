@@ -18,12 +18,13 @@ const imageTypes = {
 class ImageUpload extends React.Component{
     constructor(props){
         super(props);
-        const {uploadRules} = props;
+        const {action: defaultAction, uploadRules, context: {ImageUpload: {data, action} = {}} = {}} = props;
         const me = this;
         this.uploaderProps = {
-            action: props.action,
+            action: action || defaultAction,
             data: {
-                key: uploadRules.key
+                key: uploadRules.key,
+                ...data,
             },
             beforeUpload(file){
                 if(uploadRules.types){

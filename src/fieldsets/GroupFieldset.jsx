@@ -22,94 +22,94 @@ class GroupFieldset extends React.Component{
         this.refFields = {};
     }
 
-  validate = () => {
-      const resValid = Object.keys(this.refFields).reduce((suc, key) => {
-          const valid = this.refFields[key].validate();
-          return suc && valid;
-      }, true);
-      if(!resValid){
-          const value = this.getValue();
-          this.setState({
-              activePanelKey: '0',
-              value
-          });
-      }
-      return resValid;
-  };
+    validate = () => {
+        const resValid = Object.keys(this.refFields).reduce((suc, key) => {
+            const valid = this.refFields[key].validate();
+            return suc && valid;
+        }, true);
+        if(!resValid){
+            const value = this.getValue();
+            this.setState({
+                activePanelKey: '0',
+                value
+            });
+        }
+        return resValid;
+    };
 
-  getValue = () => {
-      const fieldsetValue = {};
-      Object.keys(this.refFields).forEach((key) => {
-          const value = this.refFields[key].getValue();
-          Object.assign(fieldsetValue, {[key]: value});
-      });
-      return fieldsetValue;
-  };
+    getValue = () => {
+        const fieldsetValue = {};
+        Object.keys(this.refFields).forEach((key) => {
+            const value = this.refFields[key].getValue();
+            Object.assign(fieldsetValue, { [key]: value });
+        });
+        return fieldsetValue;
+    };
 
-  handleSubmit = () => {
-      if(!this.validate()){
-          return;
-      }
-      if(this.props.onSubmit){
-          this.props.onSubmit({
-              [this.props.name]: this.getValue()
-          });
-      }
-  };
+    handleSubmit = () => {
+        if(!this.validate()){
+            return;
+        }
+        if(this.props.onSubmit){
+            this.props.onSubmit({
+                [this.props.name]: this.getValue()
+            });
+        }
+    };
 
-  handleCollapseChange = (key) => {
-      const value = this.getValue();
-      this.setState({activePanelKey: key, value});
-  };
+    handleCollapseChange = (key) => {
+        const value = this.getValue();
+        this.setState({ activePanelKey: key, value });
+    };
 
-  renderSubmit = () => {
-      return (
-          <div className="form-item">
-              <div className="item-con" style={{marginLeft: this.props.labelWidth + 10}}>
-                  <Button onClick={this.handleSubmit}>
-            保存
-                  </Button>
-              </div>
-          </div>
-      );
-  };
+    renderSubmit = () => {
+        return (
+            <div className="form-item">
+                <div className="item-con" style={{ marginLeft: this.props.labelWidth + 10 }}>
+                    <Button onClick={this.handleSubmit}>
+                        保存
+                    </Button>
+                </div>
+            </div>
+        );
+    };
 
-  render(){
-      const fieldsetValue = this.state.value;
-      const fields = this.props.fields.map((item) => {
-          return (
-              <FieldConverter
-                  labelWidth={this.props.labelWidth}
-                  {...item}
-                  key={item.name}
-                  value={fieldsetValue[item.name]}
-                  fieldRef={(field) => {
-                      if(field){
-                          this.refFields[item.name] = field;
-                      }else{
-                          delete this.refFields[item.name];
-                      }
-                  }}
-              />
-          );
-      });
-      if(this.props.panelTitle){
-          return (
-              <Collapse activeKey={this.state.activePanelKey} onChange={this.handleCollapseChange}>
-                  <Panel header={this.props.panelTitle}>
-                      {fields}
-                      {this.props.submit && this.renderSubmit()}
-                  </Panel>
-              </Collapse>
-          );
-      }
-      return (
-          <div>
-              {fields}
-              {this.props.submit && this.renderSubmit()}
-          </div>
-      );
-  }
+    render(){
+        const fieldsetValue = this.state.value;
+        const fields = this.props.fields.map((item) => {
+            const { context, labelWidth } = this.props;
+            return <FieldConverter
+                context={context}
+                labelWidth={labelWidth}
+                {...item}
+                key={item.name}
+                value={fieldsetValue[item.name]}
+                fieldRef={(field) => {
+                    if(field){
+                        this.refFields[item.name] = field;
+                    }else{
+                        delete this.refFields[item.name];
+                    }
+                }}
+            />;
+        });
+        if(this.props.panelTitle){
+            return (
+                <Collapse activeKey={this.state.activePanelKey} onChange={this.handleCollapseChange}>
+                    <Panel header={this.props.panelTitle}>
+                        {fields}
+                        {this.props.submit && this.renderSubmit()}
+                    </Panel>
+                </Collapse>
+            );
+        }
+        return (
+            <div>
+                {fields}
+                {this.props.submit && this.renderSubmit()}
+            </div>
+        );
+    }
 }
 
 GroupFieldset.propTypes = {

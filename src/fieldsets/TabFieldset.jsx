@@ -169,6 +169,7 @@ class TabFieldset extends React.Component{
 
               return (
                   <FieldConverter
+                      context={props.context}
                       labelWidth={props.labelWidth}
                       {...fieldProps}
                       key={`tab${i + 1}-${item.name}`}

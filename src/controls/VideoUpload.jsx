@@ -2,6 +2,7 @@
  * author: KCFE
  * date: 2017/10/12
  * description: 用于视频上传的 输入框
+ * last modified by caoyunyang at 2018-10-18
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -13,12 +14,13 @@ import Button from '../common/Button';
 class VideoUpload extends React.Component{
     constructor(props){
         super(props);
-        const {uploadRules} = props;
+        const {action: defaultAction, uploadRules, context: {VideoUpload: {action, data} = {}} = {}} = props;
         const me = this;
         this.uploaderProps = {
-            action: props.action,
+            action: action || defaultAction,
             data: {
-                key: uploadRules.key
+                key: uploadRules.key,
+                ...data,
             },
             beforeUpload(file){
                 if(file.type !== 'video/mp4'){

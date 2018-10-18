@@ -2,6 +2,7 @@
  * author: KCFE
  * date: 2017/10/12
  * description: 自动生成组件的表单
+ * last modified by caoyunyang at 2018-10-18
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -11,72 +12,61 @@ import FieldConverter from './FieldConverter';
 
 
 class AutoForm extends React.Component{
-    constructor(props){
-        super(props);
-        // 关联的字段和字段组的实例
-        this.refFields = {};
+    // 关联的字段和字段组的实例
+    refFields = {};
+
+    handleSubmit = (event) => {
+        event && event.preventDefault();
+        if(!this.validate()){
+            return;
+        }
+        if(this.props.onSubmit){
+            const values = this.getValues();
+            this.props.onSubmit(values);
+        }
+    };
+
+    getValues = () => {
+        const values = {};
+        Object.keys(this.refFields).forEach((key) => {
+            const value = this.refFields[key].getValue();
+            Object.assign(values, { [key]: value });
+        });
+        return values;
+    };
+
+    validate = () => {
+        return Object.keys(this.refFields).reduce((suc, key) => {
+            const valid = this.refFields[key].validate();
+            return suc && valid;
+        }, true);
+    };
+
+    render(){
+        const {data: formData = {}, descriptor, labelWidth, onSubmit, context} = this.props;
+        const fields = descriptor.map((item) => {
+            const {name, submit} = item;
+            const fieldProps = {
+                context, labelWidth,
+                key: name,
+                ...item,
+                value: formData[name],
+                fieldRef: (field) => (this.refFields[name] = field),
+                onSubmit: ('fieldset' in item) && submit ? onSubmit : void 0,
+            };
+            return <FieldConverter {...fieldProps} />;
+        });
+        return <form onSubmit={this.handleSubmit}>
+            {fields}
+            <div className="form-item">
+                <div className="item-con" style={{ marginLeft: labelWidth + 10 }}>
+                    <Button htmlType="submit">
+                        确定提交
+                    </Button>
+                </div>
+            </div>
+        </form>;
     }
-
-  handleSubmit = (event) => {
-      event && event.preventDefault();
-      if(!this.validate()){
-          return;
-      }
-      if(this.props.onSubmit){
-          const values = this.getValues();
-          this.props.onSubmit(values);
-      }
-  };
-
-  getValues = () => {
-      const values = {};
-      Object.keys(this.refFields).forEach((key) => {
-          const value = this.refFields[key].getValue();
-          Object.assign(values, {[key]: value});
-      });
-      return values;
-  };
-
-  validate = () => {
-      return Object.keys(this.refFields).reduce((suc, key) => {
-          const valid = this.refFields[key].validate();
-          return suc && valid;
-      }, true);
-  };
-
-  render(){
-      const props = this.props;
-      const formData = props.data || {};
-      const fields = props.descriptor.map((item) => {
-          const fieldProps = {
-              ...item,
-              value: formData[item.name],
-              fieldRef: (field) => {this.refFields[item.name] = field;}
-          };
-          if(('fieldset' in item) && !!item.submit){
-              fieldProps.onSubmit = props.onSubmit;
-          }
-          return (
-              <FieldConverter
-                  key={item.name}
-                  labelWidth={props.labelWidth}
-                  {...fieldProps}
-              />
-          );
-      });
-      return (
-          <form onSubmit={this.handleSubmit}>
-              {fields}
-              <div className="form-item">
-                  <div className="item-con" style={{marginLeft: props.labelWidth + 10}}>
-                      <Button htmlType="submit">
-              确定提交
-                      </Button>
-                  </div>
-              </div>
-          </form>
-      );
-  }
 }
 
 AutoForm.propTypes = {

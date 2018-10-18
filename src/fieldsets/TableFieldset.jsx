@@ -222,6 +222,7 @@ class TableFieldset extends React.Component{
       const headerTab = (
           <TabPane key="1" tab="第 1 行" style={{padding: '10px 0', maxHeight: '500px'}} forceRender>
               <ListFieldset
+                  context={props.context}
                   labelWidth={props.labelWidth}
                   key={'row1'}
                   name="header"
@@ -241,6 +242,7 @@ class TableFieldset extends React.Component{
           rowTabs.push(
               <TabPane key={i + 1} tab={`第 ${i + 1} 行`} style={{padding: '10px 0', maxHeight: '500px'}} forceRender>
                   <ListFieldset
+                      context={props.context}
                       labelWidth={props.labelWidth}
                       key={`row${i + 1}`}
                       name={`row${i + 1}`}

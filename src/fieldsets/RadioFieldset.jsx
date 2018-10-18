@@ -129,6 +129,7 @@ class RadioFieldset extends React.Component{
       const fields = jsonFields.map((item, index) => {
           return (
               <FieldConverter
+                  context={this.props.context}
                   {...item}
                   key={`radio${radioIndex}-field${index}`}
                   value={fieldsetValue[item.name]}

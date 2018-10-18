@@ -165,6 +165,7 @@ class ListFieldset extends React.Component{
           for(let i = 0; i < this.state.length; i++){
               const field = (
                   <FieldConverter
+                      context={props.context}
                       labelWidth={props.labelWidth}
                       {...item}
                       key={props.name + (i + 1)}
@@ -195,6 +196,7 @@ class ListFieldset extends React.Component{
                   return (
                       <FieldConverter
                           labelWidth={props.labelWidth}
+                          context={props.context}
                           {...fieldProps}
                           key={item.name + (i + 1)}
                           label={item.label + (i + 1)}
