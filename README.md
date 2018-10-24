@@ -1,5 +1,7 @@
 # biz-auto-form 表单自动生成组件
 
+![npm](http://npm.sogou-inc.com/badge/v/@bizfe/biz-auto-form.svg)
+
 ## 介绍
 - 本组件源于快速配置制作广告样式物料表单，但不乏一般适用性。
 - 本组件基于React开发，其中包括表单中常用的一些输入控件controls 和字段组fieldsets 可供使用。
