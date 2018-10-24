@@ -1,11 +1,5 @@
 # biz-auto-form 表单自动生成组件
 
-[![Build Status](https://travis-ci.org/galaxy-fe/biz-auto-form.svg?branch=master)](https://travis-ci.org/galaxy-fe/biz-auto-form)
-[![codecov](https://codecov.io/gh/galaxy-fe/biz-auto-form/branch/master/graph/badge.svg)](https://codecov.io/gh/galaxy-fe/biz-auto-form)
-[![npm](https://img.shields.io/npm/v/biz-auto-form.svg)](https://www.npmjs.com/package/biz-auto-form)
-
-[![NPM](https://nodei.co/npm/biz-auto-form.png)](https://nodei.co/npm/biz-auto-form/)
-
 ## 介绍
 - 本组件源于快速配置制作广告样式物料表单，但不乏一般适用性。
 - 本组件基于React开发，其中包括表单中常用的一些输入控件controls 和字段组fieldsets 可供使用。
