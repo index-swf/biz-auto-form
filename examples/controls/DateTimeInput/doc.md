@@ -2,7 +2,7 @@
 用于输入日期和时间，鉴于广告投放系统中的需求，默认只能选今天以后
 
 ## DateTimeInput Usage
-```
+```jsx
 class DateTimeInputDemo extends React.Component {
   constructor(props) {
     super(props);

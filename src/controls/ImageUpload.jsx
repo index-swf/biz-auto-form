@@ -18,9 +18,20 @@ const imageTypes = {
 class ImageUpload extends React.Component{
     constructor(props){
         super(props);
-        const {action: defaultAction, uploadRules, context: {ImageUpload: {data, action} = {}} = {}} = props;
+        const {
+            action: defaultAction,
+            uploadRules,
+            context: {
+                ImageUpload: {
+                    data,
+                    action,
+                    responseParser = ({data}) => data,
+                    name,
+                } = {}} = {},
+        } = props;
         const me = this;
         this.uploaderProps = {
+            name,
             action: action || defaultAction,
             data: {
                 key: uploadRules.key,
@@ -48,7 +59,7 @@ class ImageUpload extends React.Component{
             },
             onSuccess(response){
                 if(response.status === 1){
-                    me.handleChange(response.data);
+                    me.handleChange(responseParser(response));
                 }else{
                     me.setState({
                         value: '',

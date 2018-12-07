@@ -12,21 +12,23 @@ export const FormFieldConverter = (props) => {
     const fieldProps = pick(restProps, fieldPropKeys);
     const Control = controls[control];
     const controlProps = omit(restProps, fieldPropKeys);
+    const controlsWithLimiter = ['Input', 'RedWordInput', 'TextArea', 'LinkTextArea'];
     // 自动根据校验规则补充输入的limiter
-    if(fieldProps.rules && fieldProps.rules.maxBytes){
-        const controlsWithLimiter = ['Input', 'RedWordInput', 'TextArea', 'LinkTextArea'];
-        if(controlsWithLimiter.indexOf(control) !== -1){
-            controlProps.limiter = {
-                max: fieldProps.rules.maxBytes
-            };
-        }
+    if(fieldProps.rules && fieldProps.rules.maxBytes && controlsWithLimiter.indexOf(control) !== -1){
+        controlProps.limiter = {
+            max: fieldProps.rules.maxBytes
+        };
     }
-    if(fieldProps.rules && fieldProps.rules.maxBytesWithFilter){
-        if(['RedWordInput', 'LinkTextArea'].indexOf(control) !== -1){
-            controlProps.limiter = {
-                max: fieldProps.rules.maxBytesWithFilter
-            };
-        }
+    if(fieldProps.rules && fieldProps.rules.maxChars && controlsWithLimiter.indexOf(control) !== -1){
+        controlProps.limiter = {
+            type: 'char',
+            max: fieldProps.rules.maxChars
+        };
+    }
+    if(fieldProps.rules && fieldProps.rules.maxBytesWithFilter && ['RedWordInput', 'LinkTextArea'].indexOf(control) !== -1){
+        controlProps.limiter = {
+            max: fieldProps.rules.maxBytesWithFilter
+        };
     }
     return (
         <FormField ref={fieldRef} {...fieldProps}>

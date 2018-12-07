@@ -43,7 +43,7 @@ class AutoForm extends React.Component{
     };
 
     render(){
-        const {data: formData = {}, descriptor, labelWidth, onSubmit, context} = this.props;
+        const {data: formData = {}, descriptor, labelWidth, onSubmit, context, children} = this.props;
         const fields = descriptor.map((item) => {
             const {name, submit} = item;
             const fieldProps = {
@@ -58,13 +58,15 @@ class AutoForm extends React.Component{
         });
         return <form onSubmit={this.handleSubmit}>
             {fields}
-            <div className="form-item">
-                <div className="item-con" style={{ marginLeft: labelWidth + 10 }}>
-                    <Button htmlType="submit">
+            {children
+                ? children
+                : <div className="form-item">
+                    <div className="item-con" style={{ marginLeft: labelWidth + 10 }}>
+                        <Button htmlType="submit">
                         确定提交
-                    </Button>
-                </div>
-            </div>
+                        </Button>
+                    </div>
+                </div>}
         </form>;
     }
 }

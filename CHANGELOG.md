@@ -1,12 +1,31 @@
 # 更新日志
 
+## todo list
+- 刚才看了一下，仅js minify 后也有 666kb，真6，这个体积有点大啊
+    - 把 moment 也改成 引入外部的
+    - 引入 bundle analyze 工具，查找较大的依赖包
+    - 看看能否改成 依赖 antd，这样能避免重复依赖 rc-component
+- 优化文档和demo
+    - 针对组件增加 demo，增加页面上可以运行的 demo
+    - 文档中代码增加语法高亮
+    - 1.4.0 的改动没有更新文档
+    - 把 文档和代码放到一起，参考 antd 的套路
+- 增加 NumberedTextArea 组件
+- 把 imageRequired，videoRequired 统一成 Required
+
+## 1.4.0
+`2018-12-03`
+- ImageUpload 增加 responseParser，name 配置项
+- 校验规则增加字符长度校验
+- AutoForm 增加 children props 可以替换默认 提交按钮
+
 ## 1.3.2
 `2018-10-24`
 - update package.json url
 
 ## 1.3.1
 `2018-10-24`
-- migrate to bizgit
+- migrate to biz-git
 
 ## 1.3.0
 `2018-10-18`
@@ -15,7 +34,7 @@
 ## 1.2.3 ~ 1.2.6
 `2018-07-10`
 - fix 输入框过滤分隔字符的校验bug。
-- fix ListFieldset props中length改变的bug
+- fix ListFieldset props 中 length 改变的 bug
 - 文档修改
 
 ## 1.2.2
