@@ -13,6 +13,10 @@
 - 增加 NumberedTextArea 组件
 - 把 imageRequired，videoRequired 统一成 Required
 
+## 1.4.1
+`2019-01-29`
+- 修复 tab 组件来回切换时修改的文本丢失
+
 ## 1.4.0
 `2018-12-03`
 - ImageUpload 增加 responseParser，name 配置项
