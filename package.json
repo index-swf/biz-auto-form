@@ -1,6 +1,6 @@
 {
   "name": "@bizfe/biz-auto-form",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Auto-generated form react components used in ad material system",
   "main": "lib/index.js",
   "scripts": {
